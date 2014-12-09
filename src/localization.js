@@ -6,8 +6,13 @@ angular.module('ngLocalize', ['ngSanitize', 'ngLocalize.Config', 'ngLocalize.Eve
                 bundles,
                 cookieStore;
 
-            if (localeConf.persistSelection && $injector.has('$cookieStore')) {
+            if (localeConf.persistSelection) {
+              if ($injector.has('$cookieStore')) {
                 cookieStore = $injector.get('$cookieStore');
+              }
+              if ($injector.has('ipCookie')) {
+                cookieStore = $injector.get('ipCookie');
+              }
             }
 
             function isToken(str) {
